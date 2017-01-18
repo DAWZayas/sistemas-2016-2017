@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo En el directorio de trabajo creo un directorio que se llame ejercicio1
 mkdir -p ~/ejercicio1
 

@@ -1,0 +1,4 @@
+for usuario in $(cat usuarios)
+do
+	mkdir -p buzones/$usuario/{in,out}
+done

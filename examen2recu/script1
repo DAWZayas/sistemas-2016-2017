@@ -1,0 +1,15 @@
+touch usuarios
+if test -z "$*" 
+then
+	echo "No se ha pasado parámetro"
+else
+	if test -z $(echo "$*" | grep "^[[:alpha:]]\+$")
+	then
+		echo "Has utilizado algún carácter inválido"
+	elif test $(cat usuarios | grep "^$*$")
+	then
+		echo "El usuario $* ya existe"
+	else
+		echo $* >> usuarios
+	fi
+fi

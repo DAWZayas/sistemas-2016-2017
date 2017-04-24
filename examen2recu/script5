@@ -1,0 +1,24 @@
+if test -z $(cat usuarios | grep "^$1$")
+then
+	echo "No existe $usuario"
+else
+	tieneMensajes=No
+	for archivo in $(find buzones/$1/in/ -type f)
+	do
+		tieneMensajes=Si
+		remitente=$(echo $archivo | cut -f4 -d'/')
+		i=1
+		lineas=$(cat $archivo | wc -l)
+    		while test $i -le $lineas
+		do
+			echo -n $remitente:
+			echo $(cat $archivo| head -$i | tail -1)
+			let i++
+		done
+		rm $archivo
+	done
+	if test "$tieneMensajes" = "No" 
+	then
+       		echo "El usuario $usuario no tiene mensajes"
+	fi
+fi

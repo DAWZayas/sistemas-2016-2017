@@ -1,0 +1,7 @@
+for archivo in $(find buzones/ -regex "^.*/out/.*$") 
+do
+	remitente=$(echo $archivo| cut -f2 -d'/')
+	destinatario=$(echo $archivo| cut -f4 -d'/')
+	cat $archivo >> buzones/$destinatario/in/$remitente
+	rm $archivo
+done

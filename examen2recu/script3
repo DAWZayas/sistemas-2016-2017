@@ -1,0 +1,14 @@
+remitente=$1
+shift
+destinatario=$1
+shift
+mensaje=$*
+if test -z $(cat usuarios | grep "^$remitente$")
+then
+	echo "No existe $remitente"
+elif test -z $(cat usuarios | grep "^$destinatario$")
+then
+	echo "No existe $destinatario"
+else
+	echo $mensaje >> buzones/$remitente/out/$destinatario
+fi
